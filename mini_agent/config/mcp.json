@@ -31,7 +31,14 @@
         "-m",
         "ticktick_mcp.cli",
         "run"
-      ]
+      ],
+      "disabled": false
+    },
+
+    "notionMCP": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://mcp.notion.com/mcp"],
+      "disabled": false
     }
   }
 }
