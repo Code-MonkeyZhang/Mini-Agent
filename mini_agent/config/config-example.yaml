@@ -9,6 +9,7 @@
 # - Copy this file to one of the above locations as config.yaml
 # - Fill in your API key and customize settings as needed
 # - All config files (config.yaml, mcp.json, system_prompt.md) are in the same directory
+# - To enable MCP tools, copy mcp-example.json to mcp.json and edit it
 
 # ===== LLM Configuration =====
 # MiniMax API Configuration
@@ -49,6 +50,6 @@ tools:
 
   # MCP Tools
   enable_mcp: true # Enable MCP tools
-  mcp_config_path:
-    "mcp.json" # MCP configuration file (same config directory)
-    # Note: API Keys for MCP tools are configured in mcp.json
+  mcp_config_path: "mcp.json" # MCP configuration file (same config directory)
+                              # Note: API Keys for MCP tools are configured in mcp.json
+                              #       Copy mcp-example.json to mcp.json to get started
