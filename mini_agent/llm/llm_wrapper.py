@@ -5,6 +5,7 @@ This module provides a unified interface for different LLM providers
 """
 
 import logging
+from typing import Callable
 
 from ..retry import RetryConfig
 from ..schema import LLMProvider, LLMResponse, Message
@@ -40,6 +41,7 @@ class LLMClient:
         api_base: str = "https://api.minimaxi.com",
         model: str = "MiniMax-M2.1",
         retry_config: RetryConfig | None = None,
+        retry_callback: Callable | None = None,
     ):
         """Initialize LLM client with specified provider.
 
@@ -51,6 +53,7 @@ class LLMClient:
                      For third-party APIs (e.g., https://api.siliconflow.cn/v1), used as-is.
             model: Model name to use
             retry_config: Optional retry configuration
+            retry_callback: Optional callback function for retry events
         """
         self.provider = provider
         self.api_key = api_key
@@ -97,6 +100,10 @@ class LLMClient:
             )
         else:
             raise ValueError(f"Unsupported provider: {provider}")
+
+        # Set retry callback if provided
+        if retry_callback:
+            self._client.retry_callback = retry_callback
 
         logger.info("Initialized LLM client with provider: %s, api_base: %s", provider, full_api_base)
 
